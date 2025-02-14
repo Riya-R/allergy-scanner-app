@@ -1,21 +1,24 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import ScanResult from "./pages/ScanResult";
-import Profile from "./components/Profile";
+import Login from "./pages/Login";  // 🔹 Fix: Ensure case matches filename
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import { AuthProvider } from "./context/AuthContext";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
-        <div>
-            <nav>
-                <Link to="/">Home</Link> | <Link to="/profile">Profile</Link>
-            </nav>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/scan-result" element={<ScanResult />} />
-            </Routes>
-        </div>
+        <AuthProvider>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                </Routes>
+            </Router>
+        </AuthProvider>
     );
 }
 

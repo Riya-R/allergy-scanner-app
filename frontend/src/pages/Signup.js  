@@ -1,0 +1,2 @@
+const Signup = () => <h1>Signup Page (Coming Soon)</h1>;
+export default Signup;
